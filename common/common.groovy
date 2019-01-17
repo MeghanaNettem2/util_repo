@@ -1,9 +1,11 @@
 def uploadWarArtifactory() {
 	script {
-		server = Artifactory.Server   "${props.ARTIFACTORY_ID}", 
-		uploadSpec = """{
-			"files":[{
-			"pattern": "target/*.war",
+		def server = Artifactory.newServer  url: "http://my16083dns.eastus2.cloudapp.azure.com:8081/artifactory",username:'admin',password:'password'
+               def uploadSpec = """{
+   	
+                "files":[
+                    {
+                   "pattern":"target/*.war",
 			"target": "repo/${artifactId}/${version}.${BUILD_NUMBER}/"
 			}]
 		}"""
