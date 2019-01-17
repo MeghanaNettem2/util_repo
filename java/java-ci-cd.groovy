@@ -29,7 +29,7 @@ def execute(props) {
 	
 	stage('email')
 	{
-		commonUtility.failureEmail();
+		commonUtility.sendEmail();
 	}
 }
 return this
