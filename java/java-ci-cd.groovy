@@ -12,6 +12,9 @@ def execute(props) {
 		print 'Checkout Project Success'
 	}
 	
+	stage('sonar'){
+		commonutility.sonar();
+	}
 	stage('stageBuildAutomation') {
 		/*sh props.SONAR_SCAN+' '+props.SONAR_HOST*/
 		sh props.MAVEN_BUILD
