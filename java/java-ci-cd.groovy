@@ -13,7 +13,7 @@ def execute(props) {
 	}
 	
 	stage('sonar'){
-		commonutility.sonar();
+		commonUtility.sonar();
 	}
 	stage('stageBuildAutomation') {
 		/*sh props.SONAR_SCAN+' '+props.SONAR_HOST*/
