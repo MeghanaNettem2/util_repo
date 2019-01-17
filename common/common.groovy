@@ -1,6 +1,6 @@
 def uploadWarArtifactory() {
 	script {
-		def server = Artifactory.newServer  url: "http://my16083dns.eastus2.cloudapp.azure.com:8081/artifactory",username:'admin',password:'password'
+		def server = Artifactory.newServer  url: "${props.ARTIFACTORY_ID}",username:'admin',password:'password'
                def uploadSpec = """{
    	
                 "files":[
