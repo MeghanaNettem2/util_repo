@@ -1,6 +1,6 @@
 def uploadWarArtifactory() {
 	script {
-		server = Artifactory.newServer  url: "${props.ARTIFACTORY_ID}", 
+		server = Artifactory.Server   "${props.ARTIFACTORY_ID}", 
 		uploadSpec = """{
 			"files":[{
 			"pattern": "target/*.war",
