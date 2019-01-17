@@ -1,6 +1,6 @@
 def execute(props) {
 	stage('stageCheckoutProject') {
-		app_url =props.JAVA_APP_REPO_GIT
+		app_url =props.JAVA_APP_REPO_GIT_URL
 		echo "${app_url}"
 		git "${app_url}"
 		
