@@ -22,10 +22,6 @@ def sendEmail() {
 	print 'mail sent'
 }
 
-def cleanWorkspace() {
-	script {
-		sh 'rm -rf ../'+jobName+'/*'
-	}
-	print 'cleaned workspace'
+
 }
 return this
