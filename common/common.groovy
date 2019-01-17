@@ -13,6 +13,12 @@ def uploadWarArtifactory() {
 	}
 }
 
+def sonar(){
+	def mvncmd=props.SONAR_SCAN
+	def sonarurl=props.SONAR_HOST
+	def url=mvncmd+sonarurl
+	sh "${url}"
+}
 def sendEmail() {
 	emailext( 
 			subject: '${DEFAULT_SUBJECT}', 
