@@ -29,5 +29,4 @@ def sendEmail() {
 }
 
 
-}
 return this
