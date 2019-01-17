@@ -1,6 +1,6 @@
 def execute(props) {
 	stage('stageCheckoutProject') {
-		git url: props.JAVA_APP_REPO_GIT_URL,
+		git  "props.JAVA_APP_REPO_GIT_URL"
 			
 		pom = readMavenPom file: props.POM_FILE
 		artifactId=pom.artifactId
