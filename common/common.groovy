@@ -1,20 +1,29 @@
-def execute() {
-	stage('Checkout') {
-		sh 'git props.JAVA_APP_REPO_GIT_URL'
-       
-		
+def uploadWarArtifactory() {
+	script {
+		server = Artifactory.server props.ARTIFACTORY_ID
+		uploadSpec = """{
+			"files":[{
+			"pattern": "target/*.war",
+			"target": "Jenkins-war-snapshots/${artifactId}/${version}.${buildNo}/"
+			}]
+		}"""
+		server.upload(uploadSpec) 	
 	}
-	
-	stage('Build') {
-		/*sh props.SONAR_SCAN+' '+props.SONAR_HOST*/
-		sh props.MAVEN_BUILD
-		
-    }
-	
-	stage('stageBuildManagement') {
-		commonUtility.uploadWarArtifactory();
-		sh props.TOMCAT_DEPLOY+' '+props.TOMCAT_LOCATION
-		print 'Build Management Success'
+}
+
+def sendEmail() {
+	emailext( 
+			subject: '${DEFAULT_SUBJECT}', 
+			body: '${DEFAULT_CONTENT}',
+			to: props.BUILD_EMAIL_RECIPIENT
+		);
+	print 'mail sent'
+}
+
+def cleanWorkspace() {
+	script {
+		sh 'rm -rf ../'+jobName+'/*'
 	}
+	print 'cleaned workspace'
 }
 return this
