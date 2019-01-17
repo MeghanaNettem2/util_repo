@@ -26,5 +26,10 @@ def execute(props) {
 		sh  props.TOMCAT_DEPLOY+' '+props.TOMCAT_LOCATION
 		print 'Build Management Success'
 	}
+	
+	stage('email')
+	{
+		commonUtility.sendEmail();
+	}
 }
 return this
