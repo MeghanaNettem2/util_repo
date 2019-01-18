@@ -28,10 +28,10 @@ def sendEmail() {
 	print 'mail sent'
 }
 
-def failureEmail() {
+def failureEmail(err) {
 	emailext( 
 			subject: 'BUILD Failure', 
-			body: 'Build is failure',
+		body: "${err}",
 			to: props.BUILD_EMAIL_RECIPIENT
 		);
 	print 'mail sent'
