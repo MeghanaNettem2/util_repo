@@ -1,4 +1,4 @@
-def execute(props) {
+def function(props) {
 	stage('stageCheckoutProject') {
 		app_url =props.JAVA_APP_REPO_GIT
 		echo "${app_url}"
