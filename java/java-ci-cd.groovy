@@ -15,16 +15,34 @@ def function(props) {
 	stage('sonar'){
 		commonUtility.sonar();
 	}
-	stage('stageBuildAutomation') {
+	stage('Build') {
 		/*sh props.SONAR_SCAN+' '+props.SONAR_HOST*/
 		sh props.MAVEN_BUILD
 		print 'Build Automation Success'
     }
 	
-	stage('stageBuildManagement') {
+	stage('Artifactory') {
 		commonUtility.uploadWarArtifactory();
-		sh  props.TOMCAT_DEPLOY+' '+props.TOMCAT_LOCATION
+		
 		print 'Build Management Success'
+	}
+	stage('tomcat installation ') {
+	def Install = false;
+	try {
+		input message: 'Install?', ok: 'Install'
+		Install = true
+		} catch (err) {
+	Install = false
+	
+	}
+	
+       if (Install){   
+	 
+	  sh "docker run -d --name tom -p 9001:8080 tomcat"
+        }
+    }	
+	stage('deploy'){
+		sh  props.TOMCAT_DEPLOY+' '+props.TOMCAT_LOCATION
 	}
 	
 	stage('email')
