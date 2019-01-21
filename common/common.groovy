@@ -23,8 +23,7 @@ def sendEmail() {
 	emailext( 
 			subject: '${DEFAULT_SUBJECT}', 
 			body: '${DEFAULT_CONTENT}',
-		MAIL_ID: PROPS.RECEPIENT_MAIL_ID
-		to: "${MAIL_ID}"
+		to: PROPS.RECEPIENT_MAIL_ID
 		);
 	print 'mail sent'
 }
@@ -33,8 +32,7 @@ def failureEmail(err) {
 	emailext( 
 			subject: 'BUILD Failure', 
 		         body: "${err}",
-			MAIL_ID: PROPS.RECEPIENT_MAIL_ID
-		        to: "${MAIL_ID}"
+		        to: PROPS.RECEPIENT_MAIL_ID
 		);
 	print 'mail sent'
 }
