@@ -23,7 +23,7 @@ def sendEmail() {
 	emailext( 
 			subject: '${DEFAULT_SUBJECT}', 
 			body: '${DEFAULT_CONTENT}',
-		to: props.RECEPIENT_MAIL_ID
+		        to: props.RECEPIENT_MAIL_ID
 		);
 	print 'mail sent'
 }
