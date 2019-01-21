@@ -20,7 +20,7 @@ def sonar(){
 	sh "${url}"
 }
 def sendEmail() {
-		 emailext body: '${DEFAULT_CONTENT}', subject: '${DEFAULT_SUBJECT}', to: 'sweetynmeghana@gmail.com'
+		 emailext body: '${DEFAULT_CONTENT}', subject: '${DEFAULT_SUBJECT}', to:  props.RECEPIENT_MAIL_ID
 
 }
 
