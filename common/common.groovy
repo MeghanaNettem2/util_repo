@@ -26,7 +26,7 @@ def sendEmail() {
 
 def failureEmail(err) {
 	emailext( 
-			subject: 'BUILD Failure', 
+			subject: '${JOB_NAME} - BUILD # ${BUILD_NUMBER} -  FAILURE', 
 		         body: "${err}",
 		        to: props.RECEPIENT_MAIL_ID
 		);
