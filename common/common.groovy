@@ -20,7 +20,7 @@ def sonar(){
 	sh "${url}"
 }
 def sendEmail() {
-		 emailext body: '${DEFAULT_CONTENT}', subject: '${DEFAULT_SUBJECT}', to: 'Ranjitha.Nagaraj2@mindtree.com'
+		 emailext body: '${DEFAULT_CONTENT}', subject: '${DEFAULT_SUBJECT}', to: 'sweetynmeghana@gmail.com'
 
 }
 
