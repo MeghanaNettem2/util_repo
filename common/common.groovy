@@ -23,7 +23,7 @@ def sendEmail() {
 	emailext( 
 			subject: '${DEFAULT_SUBJECT}', 
 			body: '${DEFAULT_CONTENT}',
-			to: props.BUILD_EMAIL_RECIPIENT
+			to: props.RECEPIENT_MAIL_ID
 		);
 	print 'mail sent'
 }
@@ -32,7 +32,7 @@ def failureEmail(err) {
 	emailext( 
 			subject: 'BUILD Failure', 
 		body: "${err}",
-			to: props.BUILD_EMAIL_RECIPIENT
+			to: props.RECEPIENT_MAIL_ID
 		);
 	print 'mail sent'
 }
