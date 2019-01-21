@@ -1,5 +1,5 @@
 def function(props) {
-	stage('stageCheckoutProject') {
+	stage('CheckoutProject') {
 		app_url =props.JAVA_APP_REPO_GIT_URL
 		echo "${app_url}"
 		git "${app_url}"
@@ -12,21 +12,21 @@ def function(props) {
 		print 'Checkout Project Success'
 	}
 	
-	stage('sonar'){
+	stage('SonarAnalysis'){
 		commonUtility.sonar();
 	}
-	stage('Build') {
+	stage('BuildProject') {
 		/*sh props.SONAR_SCAN+' '+props.SONAR_HOST*/
 		sh props.MAVEN_BUILD
 		print 'Build Automation Success'
     }
 	
-	stage('Artifactory') {
+	stage('UploadArtifactory') {
 		commonUtility.uploadWarArtifactory();
 		
 		print 'Build Management Success'
 	}
-	stage('tomcat installation ') {
+	stage('Tomcat Installation ') {
 	def Install = false;
 	try {
 		input message: 'Install?', ok: 'Install'
@@ -41,11 +41,11 @@ def function(props) {
 	  sh "docker run -d --name tom -p 9001:8080 tomcat"
         }
     }	
-	stage('deploy'){
+	stage('Deploying to Tomcat'){
 		sh  props.TOMCAT_DEPLOY+' '+props.TOMCAT_LOCATION
 	}
 	
-	stage('email')
+	stage('Email Notification')
 	{
 		commonUtility.sendEmail();
 	}
