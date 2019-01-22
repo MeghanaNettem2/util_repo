@@ -1,7 +1,7 @@
 def function(props) {
 	stage('CheckoutProject') {
 		app_url =props.JAVA_APP_REPO_GIT_URL
-		echo "${app_url}"
+		
 		git "${app_url}"
 		
 			
@@ -9,7 +9,7 @@ def function(props) {
 		artifactId=pom.artifactId
 		echo "${artifactId}"
 		version=pom.version
-		print 'Checkout Project Success'
+		
 	}
 	
 	stage('SonarAnalysis'){
@@ -18,13 +18,12 @@ def function(props) {
 	stage('BuildProject') {
 		/*sh props.SONAR_SCAN+' '+props.SONAR_HOST*/
 		sh props.MAVEN_BUILD
-		print 'Build Automation Success'
+		
     }
 	
 	stage('UploadArtifactory') {
 		commonUtility.uploadWarArtifactory();
-		
-		print 'Build Management Success'
+	
 	}
 	stage('Tomcat Installation ') {
 	def Install = false;
@@ -38,7 +37,7 @@ def function(props) {
 	
        if (Install){   
 	 
-	  sh "docker run -d --name tom -p 9001:8080 tomcat"
+	  sh props.DOCKER_CMD
         }
     }	
 	stage('Deploying to Tomcat'){
