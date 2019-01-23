@@ -1,10 +1,7 @@
 def function(props) {
 	stage('CheckoutProject') {
-		app_url =props.JAVA_APP_REPO_GIT_URL
-		
+		app_url =props.JAVA_APP_REPO_GIT_URL		
 		git "${app_url}"
-		
-			
 		pom = readMavenPom file: props.POM_FILE
 		artifactId=pom.artifactId
 		echo "${artifactId}"
